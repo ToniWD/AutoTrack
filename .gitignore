@@ -1,0 +1,12 @@
+# Ignoră fișierele de sistem
+.DS_Store
+Thumbs.db
+
+# Loguri
+*.log
+
+# Fișiere sensitive
+.env
+
+# Node modules (poate fi și în .gitignore-ul local din frontend/backend)
+node_modules/

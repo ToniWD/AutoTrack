@@ -1,0 +1,27 @@
+/* Aplicați la orice container care folosește scroll */
+.scrollable {
+    overflow-y: auto;
+}
+
+/* Scrollbar general */
+.scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Fundalul scroll-ului (track) */
+.scrollable::-webkit-scrollbar-track {
+    background: #2d3748; /* Gri închis */
+    border-radius: 10px;
+}
+
+/* Bara efectivă de scroll (thumb) */
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: #4ade80; /* Verde deschis */
+    border-radius: 10px;
+    border: 2px solid #2d3748; /* Spațiu între thumb și track */
+}
+
+/* La hover pe thumb */
+.scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: #22c55e; /* Verde mai intens */
+}

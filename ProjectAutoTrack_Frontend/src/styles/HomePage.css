@@ -1,0 +1,93 @@
+/* HomePage.css */
+
+/* Containerul principal al paginii */
+.homepage-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #1f2937; /* Gray-900 */
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    padding: 1rem;
+    background-color: #2d3748; /* Gray-800 */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Control Panel */
+.user-controls {
+    padding: 1rem;
+    background-color: #4a5568; /* Gray-700 */
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titlul navigației */
+.navigation-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: bold;
+}
+
+/* Main content area */
+.main-content {
+    flex-grow: 1;
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    grid-auto-rows: 1fr;
+}
+
+/* Paneluri individuale */
+.active-routes-panel,
+.drivers-status,
+.fleet-status,
+.recent-orders {
+    background-color: #2d3748; /* Gray-800 */
+    padding: 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    min-height: 0;
+    max-height: 26rem;
+    overflow: hidden;
+}
+
+/* Titluri pentru fiecare secțiune */
+.section-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.5rem;
+}
+
+/* Listă pentru fiecare secțiune */
+.section-list {
+    font-size: 0.875rem; /* text-sm */
+    color: #e2e8f0; /* Gray-300 */
+    list-style-type: none;
+    padding: 5px;
+    height: 100%;
+}
+
+.section-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsivitate */
+@media (max-width: 768px) {
+    .homepage-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+}
