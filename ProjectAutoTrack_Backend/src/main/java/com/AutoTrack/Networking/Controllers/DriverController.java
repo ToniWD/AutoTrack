@@ -1,6 +1,7 @@
 package com.AutoTrack.Networking.Controllers;
 
 import com.AutoTrack.Domain.Driver;
+import com.AutoTrack.Domain.Reports.DriverReport;
 import com.AutoTrack.Service.ServiceException;
 import com.AutoTrack.Service.Services.DriverService;
 import jakarta.validation.Valid;
@@ -52,6 +53,14 @@ public class DriverController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/{id}/report")
+    public ResponseEntity<DriverReport> getDriverReportById(@PathVariable Long id) {
+        return driverService.getReportForDriver(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
     // Update
     @PutMapping("/{id}")
     public ResponseEntity<Driver> updateDriver(@PathVariable Long id, @Valid @RequestBody Driver driverDetails) {
@@ -90,5 +99,7 @@ public class DriverController {
     public ResponseEntity<String> handleServiceException(ServiceException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+
+
 }
 

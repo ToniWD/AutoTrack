@@ -1,9 +1,15 @@
-import API from './api.tsx';
-import type { DTOUser, DTORoute, Driver, Vehicle } from './domain.tsx';
+import API from "./api.tsx";
+import type {
+  DTOUser,
+  DTORoute,
+  Driver,
+  Vehicle,
+  DriverReports,
+} from "./domain.tsx";
 
 export const handleLogout = () => {
-  localStorage.removeItem('token');
-  window.location.href = '/login'; // sau navigate('/login') dacă folosești react-router
+  localStorage.removeItem("token");
+  window.location.href = "/login"; // sau navigate('/login') dacă folosești react-router
 };
 
 export const handleLogin = async ({
@@ -13,16 +19,15 @@ export const handleLogin = async ({
   username: string;
   password: string;
 }) => {
-  const res = await API.post('/auth/login', { username, password });
-  localStorage.setItem('token', res.data.token);
+  const res = await API.post("/auth/login", { username, password });
+  localStorage.setItem("token", res.data.token);
   return true;
 };
 
 export const me = async (): Promise<DTOUser> => {
-  const res = await API.get<DTOUser>('/me');
+  const res = await API.get<DTOUser>("/me");
   return res.data;
 };
-
 
 function parseDTORoute(raw: any): DTORoute {
   return {
@@ -32,7 +37,9 @@ function parseDTORoute(raw: any): DTORoute {
     assignedDriver: {
       ...raw.assignedDriver,
       licenseExpirationDate: new Date(raw.assignedDriver.licenseExpirationDate),
-      medicalCheckExpirationDate: new Date(raw.assignedDriver.medicalCheckExpirationDate),
+      medicalCheckExpirationDate: new Date(
+        raw.assignedDriver.medicalCheckExpirationDate
+      ),
       hiredDate: new Date(raw.assignedDriver.hiredDate),
     },
     assignedVehicle: { ...raw.assignedVehicle },
@@ -48,34 +55,51 @@ function parseDriver(raw: any): Driver {
   };
 }
 
-
 export const getAllRoutes = async (): Promise<DTORoute[]> => {
-  const res = await API.get<DTORoute[]>('/routes');
+  const res = await API.get<DTORoute[]>("/routes");
   const routes = res.data.map(parseDTORoute);
 
   return routes;
 };
 
 export const getAllDrivers = async (): Promise<Driver[]> => {
-  const res = await API.get<DTORoute[]>('/drivers');
+  const res = await API.get<DTORoute[]>("/drivers");
   const drivers = res.data.map(parseDriver);
 
   return drivers;
 };
 
 export const getAllVehicles = async (): Promise<Vehicle[]> => {
-  const res = await API.get<Vehicle[]>('/vehicles');
+  const res = await API.get<Vehicle[]>("/vehicles");
 
   return res.data;
 };
 
 export const postVehicle = async (vehicle: Vehicle): Promise<Vehicle> => {
-  const res = await API.post<Vehicle>('/vehicles', vehicle);
+  const res = await API.post<Vehicle>("/vehicles", vehicle);
   return res.data;
-}
-
+};
 
 export const postDriver = async (driver: Driver): Promise<Driver> => {
-  const res = await API.post<Driver>('/drivers', driver);
+  const res = await API.post<Driver>("/drivers", driver);
   return res.data;
-}
+};
+
+export const postRoute = async (route: DTORoute): Promise<DTORoute> => {
+  const res = await API.post<DTORoute>("/routes", route);
+  return parseDTORoute(res.data);
+};
+
+export const getDriverById = async (id: number): Promise<Driver> => {
+  const res = await API.get<Driver>(`/drivers/${id}`);
+  return parseDriver(res.data);
+};
+
+// Reports -------------------------------------------------------------------------------------------------------------------------
+
+export const getReportsForDriver = async (
+  id: number
+): Promise<DriverReports> => {
+  const res = await API.get<DriverReports>(`/drivers/${id}/report`);
+  return res.data;
+};

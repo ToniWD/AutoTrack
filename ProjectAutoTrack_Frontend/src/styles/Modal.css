@@ -1,57 +1,206 @@
 /* Modal overlay - fundal semi-transparent */
 .modal-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    /* background-color: rgba(31, 41, 55, 0.75);  */
-    background-color: rgba(65, 72, 82, 0.75); 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(31, 41, 55, 0.75);  */
+  background-color: rgba(65, 72, 82, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 /* Conținutul modalului */
 .modal-content {
-    position: fixed;
-    background-color: #1f2937; 
-    color: #ffffff;
-    border-radius: 0.5rem;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    min-width: 320px;
-    max-width: 90vw;
-    text-align: left;
+  position: fixed;
+  background-color: #1f2937;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: left;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Titlul modalului */
 .modal-content h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 /* Paragrafele din modal */
 .modal-content p {
-    font-size: 0.875rem;
-    margin: 0.25rem 0;
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
 }
 
 /* Butonul Close */
 .modal-content button {
-    margin-top: 1rem;
-    background-color: #10b981; /* green-500 */
-    border: none;
-    border-radius: 0.375rem;
-    padding: 0.5rem 1rem;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-size: 0.875rem;
+  margin-top: 1rem;
+  background-color: #10b981; /* green-500 */
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.875rem;
 }
 
 .modal-content button:hover {
-    background-color: #059669; /* green-600 */
+  background-color: #059669; /* green-600 */
+}
+
+.modal-content select {
+  background-color: #374151; /* gri închis similar cu #1f2937 */
+  color: #ffffff;
+  border: 1px solid #4b5563; /* gray-600 */
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-content select:focus {
+  border-color: #10b981; /* green-500 */
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3); /* green focus ring */
+}
+
+.modal-content option {
+  background-color: #374151;
+  color: #ffffff;
+}
+
+/* Stilizare generală pentru inputurile numerice */
+.modal-content input[type="number"] {
+  background-color: #374151; /* similar cu restul inputurilor */
+  color: #ffffff;
+  border: 1px solid #4b5563;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+}
+
+.modal-content input[type="number"]:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+/* Elimină butoanele native (pentru Firefox) */
+/* Elimină butoanele native (pentru Chrome, Safari, Edge) */
+.modal-content input[type="number"]::-webkit-outer-spin-button,
+.modal-content input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Elimină butoanele native (pentru Firefox) */
+.modal-content input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Re-adaugă butoane custom dacă vrei să le faci tu */
+.modal-content .number-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.modal-content .number-input-wrapper input[type="number"] {
+  padding-right: 2rem;
+}
+
+.modal-content .arrow-buttons {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.modal-content .arrow-buttons button {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-content .arrow-buttons button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="tel"],
+.modal-content input[type="password"],
+.modal-content textarea {
+  background-color: #374151; /* gri închis, potrivit cu modal */
+  color: #ffffff;
+  border: 1px solid #4b5563; /* border gri */
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="email"]:focus,
+.modal-content input[type="tel"]:focus,
+.modal-content input[type="password"]:focus,
+.modal-content textarea:focus {
+  border-color: #10b981; /* verde */
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3); /* glow verde */
+}
+
+.modal-content input[type="date"] {
+  background-color: #374151; /* gri închis */
+  color: #ffffff;
+  border: 1px solid #4b5563;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none; /* încearcă să elimine stilul nativ */
+  cursor: pointer;
+}
+
+.modal-content input[type="date"]:focus {
+  border-color: #10b981; /* verde */
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+/* Stil pentru iconița calendar (doar Firefox) */
+.modal-content input[type="date"]::-moz-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+/* Stil pentru iconița calendar (doar Chrome/Safari) */
+.modal-content input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }
